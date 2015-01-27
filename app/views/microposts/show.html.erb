@@ -3,5 +3,18 @@
     <section class="micropost">
       <%= render 'shared/micropost_info' %>
     </section>
+    <% if logged_in? %>
+      <section class="comment">
+        <%= render 'shared/comment_form' %>
+      </section>
+    <% else %>
+      <p><%= link_to "Log in", login_path %> to comment </p>
+    <% end %>
+  </aside>
+  <aside class="col-md-8">
+    <section class="micropost">
+      <h3>Comments</h3>
+      <%= render 'shared/comment_feed' %>
+    </section>
   </aside>
 </div>
