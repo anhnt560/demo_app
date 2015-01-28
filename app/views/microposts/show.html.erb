@@ -4,9 +4,13 @@
       <%= render 'shared/micropost_info' %>
     </section>
     <% if logged_in? %>
-      <section class="comment">
-        <%= render 'shared/comment_form' %>
-      </section>
+      <% if @micropost.user.following?(current_user) ||current_user?(@micropost.user) || current_user.following?(@micropost.user) %>    
+        <section class="comment">
+          <%= render 'shared/comment_form' %>
+        </section>  
+      <%else%>
+        <h4>Follow user to comment</h6>
+      <% end %>      
     <% else %>
       <p><%= link_to "Log in", login_path %> to comment </p>
     <% end %>
